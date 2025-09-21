@@ -10,7 +10,7 @@
     "build:strict": "tsc -b &&  vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prod:doc:typedoc": "http-server ./subtree-doc/docs/typedoc -p 5175 -c-1 --cors -a 0.0.0.0"
+    "prod:doc:typedoc": "http-server ./subtree-doc/docs -p 5175 -c-1 --cors -a 0.0.0.0"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -25,6 +25,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.30.1",
+    "sdk-v1": "https://github.com/charchar111/subtree-test3/raw/package/package/v1/template-web-frontend-sdk-webpack-typescript.tgz",
+    "sdk-v2": "https://github.com/charchar111/subtree-test3/raw/package/package/v2/template-web-frontend-sdk-webpack-typescript.tgz",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12"
   },
@@ -38,11 +40,11 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "http-server": "^14.1.1",
     "prettier": "^3.6.2",
     "tw-animate-css": "^1.3.8",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.0",
-    "vite": "^7.1.0",
-    "http-server": "^14.1.1"
+    "vite": "^7.1.0"
   }
 }
