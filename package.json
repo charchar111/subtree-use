@@ -9,7 +9,8 @@
     "build:consortium": "vite build",
     "build:strict": "tsc -b &&  vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prod:doc:typedoc": "http-server ./subtree-doc/docs/typedoc -p 5175 -c-1 --cors -a 0.0.0.0"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -41,6 +42,7 @@
     "tw-animate-css": "^1.3.8",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.0",
-    "vite": "^7.1.0"
+    "vite": "^7.1.0",
+    "http-server": "^14.1.1"
   }
 }
