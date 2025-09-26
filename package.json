@@ -10,7 +10,9 @@
     "build:strict": "tsc -b &&  vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prod:doc:typedoc": "http-server ./subtree-doc/docs -p 5175 -c-1 --cors -a 0.0.0.0"
+    "prod:doc:typedoc": "http-server ./subtree-doc/docs -p 5175 -c-1 --cors -a 0.0.0.0",
+    "doc:pull": "node script/sync-subtree.js subtree-doc pull",
+    "doc:push": "node script/sync-subtree.js subtree-doc push"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.12",
