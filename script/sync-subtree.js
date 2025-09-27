@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
  * Node.js 기반 Git subtree sync 스크립트
- * 사용법: node scripts/sync-subtree.js <name> <pull|push>
+ * 사용법:
+ *   node script/sync-subtree.js <name> fetch_merge
+ *   node script/sync-subtree.js <name> push
  */
 
 import fs from 'fs';
@@ -20,7 +22,7 @@ function main() {
 
   if (!name || !action) {
     console.error(
-      '명령어에서 <name>과 <action>이 빠졌습니다.: node scripts/sync-subtree.js <name> <pull|push>',
+      '명령어에 필요한 옵션이 없습니다. 사용법:\n node script/sync-subtree.js <name> <fetch_merge|push>',
     );
     process.exit(1);
   }
@@ -40,7 +42,9 @@ function main() {
     process.exit(1);
   }
 
-  const remoteName = `${name}`;
+  const remoteName = name;
+  const branchRef = entry.branch;
+  const prefix = entry.prefix;
 
   // 원격이 없으면 추가
   try {
@@ -49,25 +53,24 @@ function main() {
     run(`git remote add ${remoteName} ${entry.url}`);
   }
 
-  if (action === 'pull') {
-    if (!fs.existsSync(entry.prefix)) {
-      console.log(
-        `📂 '${entry.prefix}' 폴더가 없으므로 subtree add로 최초 추가합니다.`,
-      );
+  if (action === 'fetch_merge') {
+    if (!fs.existsSync(prefix)) {
+      // prefix 디렉터리가 없으면 add
+      console.log(`📂 '${prefix}' 디렉토리가 없어 subtree add 실행`);
       run(
-        `git subtree add --prefix=${entry.prefix} ${remoteName} ${entry.branch} --squash`,
+        `git subtree add --prefix=${prefix} ${remoteName} ${branchRef} --squash -m "add: initial subtree ${name}"`,
       );
     } else {
+      // 있으면 fetch + merge
+      run(`git fetch ${remoteName} ${branchRef}`);
       run(
-        `git subtree pull --prefix=${entry.prefix} ${remoteName} ${entry.branch} --squash`,
+        `git subtree merge --prefix=${prefix} ${remoteName}/${branchRef} --squash -m "merge: update ${prefix} from ${remoteName}/${branchRef}"`,
       );
     }
   } else if (action === 'push') {
-    run(
-      `git subtree push --prefix=${entry.prefix} ${remoteName} ${entry.branch}`,
-    );
+    run(`git subtree push --prefix=${prefix} ${remoteName} ${branchRef}`);
   } else {
-    console.error('❌ Invalid action: use pull or push');
+    console.error('❌ Invalid action: use fetch_merge or push');
     process.exit(1);
   }
 }

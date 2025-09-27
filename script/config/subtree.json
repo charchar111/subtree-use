@@ -1,7 +1,7 @@
 {
   "subtree-doc": {
     "url": "https://github.com/charchar111/template-web-frontend-SDK.git",
-    "branch": "docs",
+    "branch": "webpack-doc",
     "prefix": "subtree-doc"
   }
 }
