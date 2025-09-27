@@ -27,8 +27,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.30.1",
-    "sdk-v1": "https://github.com/charchar111/subtree-test3/raw/package/package/v1/template-web-frontend-sdk-webpack-typescript.tgz",
-    "sdk-v2": "https://github.com/charchar111/subtree-test3/raw/package/package/v2/template-web-frontend-sdk-webpack-typescript.tgz",
+    "sdk-v1": "https://github.com/charchar111/template-web-frontend-SDK/raw/webpack-package/package/v1/template-web-frontend-sdk-webpack-typescript.tgz",
+    "sdk-v2": "https://github.com/charchar111/template-web-frontend-SDK/raw/webpack-package/package/v2/template-web-frontend-sdk-webpack-typescript.tgz",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12"
   },
