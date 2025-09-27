@@ -42,7 +42,7 @@ function main() {
     process.exit(1);
   }
 
-  const remoteName = `${name}-remote`;
+  const remoteName = `${name}`;
 
   // 원격이 없으면 추가
   try {
@@ -51,6 +51,9 @@ function main() {
     run(`git remote add ${remoteName} ${entry.url}`);
   }
 
+  //  로직의 문제
+  // pull이나 merge를 할 때 --prefix 폴더가 존재하지 않으면 오류 발생
+  // 그래서 폴더가 없으면 미리 만들어주거나 subtree add로 추가해주는게 좋음
   if (action === 'pull') {
     run(
       `git subtree pull --prefix=${entry.prefix} ${remoteName} ${entry.branch} --squash`,
